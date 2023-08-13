@@ -28,6 +28,7 @@ mixin _$PokemonSprites {
   String get frontDefaultImageUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'front_shiny')
   String get frontShinyImageUrl => throw _privateConstructorUsedError;
+  Other get other => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,10 @@ abstract class $PokemonSpritesCopyWith<$Res> {
       {@JsonKey(name: 'back_default') String backDefaultImageUrl,
       @JsonKey(name: 'back_shiny') String backShinyImageUrl,
       @JsonKey(name: 'front_default') String frontDefaultImageUrl,
-      @JsonKey(name: 'front_shiny') String frontShinyImageUrl});
+      @JsonKey(name: 'front_shiny') String frontShinyImageUrl,
+      Other other});
+
+  $OtherCopyWith<$Res> get other;
 }
 
 /// @nodoc
@@ -65,6 +69,7 @@ class _$PokemonSpritesCopyWithImpl<$Res, $Val extends PokemonSprites>
     Object? backShinyImageUrl = null,
     Object? frontDefaultImageUrl = null,
     Object? frontShinyImageUrl = null,
+    Object? other = null,
   }) {
     return _then(_value.copyWith(
       backDefaultImageUrl: null == backDefaultImageUrl
@@ -83,7 +88,19 @@ class _$PokemonSpritesCopyWithImpl<$Res, $Val extends PokemonSprites>
           ? _value.frontShinyImageUrl
           : frontShinyImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      other: null == other
+          ? _value.other
+          : other // ignore: cast_nullable_to_non_nullable
+              as Other,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OtherCopyWith<$Res> get other {
+    return $OtherCopyWith<$Res>(_value.other, (value) {
+      return _then(_value.copyWith(other: value) as $Val);
+    });
   }
 }
 
@@ -99,7 +116,11 @@ abstract class _$$_PokemonSpritesCopyWith<$Res>
       {@JsonKey(name: 'back_default') String backDefaultImageUrl,
       @JsonKey(name: 'back_shiny') String backShinyImageUrl,
       @JsonKey(name: 'front_default') String frontDefaultImageUrl,
-      @JsonKey(name: 'front_shiny') String frontShinyImageUrl});
+      @JsonKey(name: 'front_shiny') String frontShinyImageUrl,
+      Other other});
+
+  @override
+  $OtherCopyWith<$Res> get other;
 }
 
 /// @nodoc
@@ -117,6 +138,7 @@ class __$$_PokemonSpritesCopyWithImpl<$Res>
     Object? backShinyImageUrl = null,
     Object? frontDefaultImageUrl = null,
     Object? frontShinyImageUrl = null,
+    Object? other = null,
   }) {
     return _then(_$_PokemonSprites(
       backDefaultImageUrl: null == backDefaultImageUrl
@@ -135,6 +157,10 @@ class __$$_PokemonSpritesCopyWithImpl<$Res>
           ? _value.frontShinyImageUrl
           : frontShinyImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      other: null == other
+          ? _value.other
+          : other // ignore: cast_nullable_to_non_nullable
+              as Other,
     ));
   }
 }
@@ -146,7 +172,8 @@ class _$_PokemonSprites implements _PokemonSprites {
       {@JsonKey(name: 'back_default') required this.backDefaultImageUrl,
       @JsonKey(name: 'back_shiny') required this.backShinyImageUrl,
       @JsonKey(name: 'front_default') required this.frontDefaultImageUrl,
-      @JsonKey(name: 'front_shiny') required this.frontShinyImageUrl});
+      @JsonKey(name: 'front_shiny') required this.frontShinyImageUrl,
+      required this.other});
 
   factory _$_PokemonSprites.fromJson(Map<String, dynamic> json) =>
       _$$_PokemonSpritesFromJson(json);
@@ -163,10 +190,12 @@ class _$_PokemonSprites implements _PokemonSprites {
   @override
   @JsonKey(name: 'front_shiny')
   final String frontShinyImageUrl;
+  @override
+  final Other other;
 
   @override
   String toString() {
-    return 'PokemonSprites(backDefaultImageUrl: $backDefaultImageUrl, backShinyImageUrl: $backShinyImageUrl, frontDefaultImageUrl: $frontDefaultImageUrl, frontShinyImageUrl: $frontShinyImageUrl)';
+    return 'PokemonSprites(backDefaultImageUrl: $backDefaultImageUrl, backShinyImageUrl: $backShinyImageUrl, frontDefaultImageUrl: $frontDefaultImageUrl, frontShinyImageUrl: $frontShinyImageUrl, other: $other)';
   }
 
   @override
@@ -181,13 +210,14 @@ class _$_PokemonSprites implements _PokemonSprites {
             (identical(other.frontDefaultImageUrl, frontDefaultImageUrl) ||
                 other.frontDefaultImageUrl == frontDefaultImageUrl) &&
             (identical(other.frontShinyImageUrl, frontShinyImageUrl) ||
-                other.frontShinyImageUrl == frontShinyImageUrl));
+                other.frontShinyImageUrl == frontShinyImageUrl) &&
+            (identical(other.other, this.other) || other.other == this.other));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, backDefaultImageUrl,
-      backShinyImageUrl, frontDefaultImageUrl, frontShinyImageUrl);
+      backShinyImageUrl, frontDefaultImageUrl, frontShinyImageUrl, other);
 
   @JsonKey(ignore: true)
   @override
@@ -209,8 +239,8 @@ abstract class _PokemonSprites implements PokemonSprites {
       @JsonKey(name: 'back_shiny') required final String backShinyImageUrl,
       @JsonKey(name: 'front_default')
       required final String frontDefaultImageUrl,
-      @JsonKey(name: 'front_shiny')
-      required final String frontShinyImageUrl}) = _$_PokemonSprites;
+      @JsonKey(name: 'front_shiny') required final String frontShinyImageUrl,
+      required final Other other}) = _$_PokemonSprites;
 
   factory _PokemonSprites.fromJson(Map<String, dynamic> json) =
       _$_PokemonSprites.fromJson;
@@ -227,6 +257,8 @@ abstract class _PokemonSprites implements PokemonSprites {
   @override
   @JsonKey(name: 'front_shiny')
   String get frontShinyImageUrl;
+  @override
+  Other get other;
   @override
   @JsonKey(ignore: true)
   _$$_PokemonSpritesCopyWith<_$_PokemonSprites> get copyWith =>

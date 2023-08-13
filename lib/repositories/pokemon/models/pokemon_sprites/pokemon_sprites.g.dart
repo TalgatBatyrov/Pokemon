@@ -12,6 +12,7 @@ _$_PokemonSprites _$$_PokemonSpritesFromJson(Map<String, dynamic> json) =>
       backShinyImageUrl: json['back_shiny'] as String,
       frontDefaultImageUrl: json['front_default'] as String,
       frontShinyImageUrl: json['front_shiny'] as String,
+      other: Other.fromJson(json['other'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_PokemonSpritesToJson(_$_PokemonSprites instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$_PokemonSpritesToJson(_$_PokemonSprites instance) =>
       'back_shiny': instance.backShinyImageUrl,
       'front_default': instance.frontDefaultImageUrl,
       'front_shiny': instance.frontShinyImageUrl,
+      'other': instance.other,
     };

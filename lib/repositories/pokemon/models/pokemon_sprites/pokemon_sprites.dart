@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pokemon/repositories/pokemon/models/pokemon_sprites/elements/other/other.dart';
 
 part 'pokemon_sprites.freezed.dart';
 part 'pokemon_sprites.g.dart';
@@ -10,6 +11,7 @@ class PokemonSprites with _$PokemonSprites {
     @JsonKey(name: 'back_shiny') required String backShinyImageUrl,
     @JsonKey(name: 'front_default') required String frontDefaultImageUrl,
     @JsonKey(name: 'front_shiny') required String frontShinyImageUrl,
+    required Other other,
   }) = _PokemonSprites;
 
   factory PokemonSprites.fromJson(Map<String, dynamic> json) =>
