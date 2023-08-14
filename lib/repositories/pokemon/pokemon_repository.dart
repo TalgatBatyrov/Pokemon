@@ -18,7 +18,6 @@ class PokemonRepository implements IPokemonRepository {
 
   @override
   Future<List<Pokemon>> getAllPokemons(String url) async {
-    // final response = await _dio.get('https://pokeapi.co/api/v2/pokemon');
     final response = await _dio.get(url);
     final results = List<Map<String, dynamic>>.from(response.data['results']);
     final pokemons = results.map((e) => Pokemon.fromJson(e)).toList();
@@ -26,8 +25,8 @@ class PokemonRepository implements IPokemonRepository {
   }
 
   @override
-  Future<PokemonDetails> getPokemon(String name) async {
-    final response = await _dio.get('https://pokeapi.co/api/v2/pokemon/$name');
+  Future<PokemonDetails> getPokemon(String id) async {
+    final response = await _dio.get('https://pokeapi.co/api/v2/pokemon/$id');
     final pokemon = PokemonDetails.fromJson(response.data);
     return pokemon;
   }

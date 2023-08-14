@@ -6,7 +6,7 @@ abstract class IPokemonRepository {
   Future<MainResult> getAllPokemons1(String url);
   Future<List<Pokemon>> getAllPokemons(String url);
 
-  Future<PokemonDetails> getPokemon(String name);
+  Future<PokemonDetails> getPokemon(String id);
 
   // Future<dynamic> getPokemonSpecies(String name);
 

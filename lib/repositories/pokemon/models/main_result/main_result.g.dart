@@ -11,7 +11,7 @@ _$_MainResult _$$_MainResultFromJson(Map<String, dynamic> json) =>
       count: json['count'] as int,
       next: json['next'] as String?,
       previous: json['previous'] as String?,
-      results: (json['results'] as List<dynamic>)
+      pokemons: (json['results'] as List<dynamic>)
           .map((e) => Pokemon.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -21,5 +21,5 @@ Map<String, dynamic> _$$_MainResultToJson(_$_MainResult instance) =>
       'count': instance.count,
       'next': instance.next,
       'previous': instance.previous,
-      'results': instance.results,
+      'results': instance.pokemons,
     };

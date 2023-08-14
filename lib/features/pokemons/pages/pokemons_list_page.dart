@@ -1,10 +1,9 @@
 import 'dart:math';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:pokemon/features/pokemons/blocs/pokemon_cubit.dart';
+import 'package:pokemon/features/pokemons/blocs/pokemons/pokemon_cubit.dart';
 
 import '../../../router/app_router.dart';
 
@@ -50,22 +49,24 @@ class _PokemonsListPageState extends State<PokemonsListPage>
                 const Center(child: CircularProgressIndicator()),
             loaded: (state) => Column(
               children: [
-                if (state.previous != null)
+                if (state.response.previous != null)
                   IconButton(
                     onPressed: () {
-                      if (state.previous != null) {
+                      if (state.response.previous != null) {
                         context
                             .read<PokemonCubit>()
-                            .getPokemons(state.previous!);
+                            .getPokemons(state.response.previous!);
                       }
                     },
                     icon: const Icon(Icons.arrow_back),
                   ),
-                if (state.next != null)
+                if (state.response.next != null)
                   IconButton(
                     onPressed: () {
-                      if (state.next != null) {
-                        context.read<PokemonCubit>().getPokemons(state.next!);
+                      if (state.response.next != null) {
+                        context
+                            .read<PokemonCubit>()
+                            .getPokemons(state.response.next!);
                       }
                     },
                     icon: const Icon(Icons.arrow_forward),
@@ -76,62 +77,61 @@ class _PokemonsListPageState extends State<PokemonsListPage>
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                     ),
-                    itemCount: state.pokemons.length,
+                    itemCount: state.response.pokemons.length,
                     itemBuilder: (context, index) {
-                      final pokemon = state.pokemons[index];
+                      final pokemon = state.response.pokemons[index];
+                      final pokemonId = pokemon.url.split('/').elementAt(6);
+
                       return GestureDetector(
                         onTap: () => context.router.push(
-                          PokemonDetailsRoute(pokemon: pokemon),
+                          PokemonDetailsRoute(
+                            id: pokemonId,
+                          ),
                         ),
-                        child: Hero(
-                          tag: pokemon.sprites.backDefaultImageUrl,
-                          child: Card(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: AnimatedBuilder(
-                                        animation: _animation,
-                                        builder: (context, child) {
-                                          return Transform.translate(
-                                            offset: Offset(
-                                              0.0,
-                                              10.0 *
-                                                  sin(
-                                                    _animation.value + index,
-                                                  ),
+                        child: Card(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: AnimatedBuilder(
+                                      animation: _animation,
+                                      builder: (context, child) {
+                                        return Transform.translate(
+                                          offset: Offset(
+                                            0.0,
+                                            10.0 *
+                                                sin(
+                                                  _animation.value + index,
+                                                ),
+                                          ),
+                                          child: SvgPicture.network(
+                                            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.url.split('/')[6]}.svg',
+                                            // pokemon.sprites.other.dreamWorld
+                                            //     .frontDefault,
+                                            placeholderBuilder:
+                                                (BuildContext context) =>
+                                                    const Padding(
+                                              padding: EdgeInsets.all(30.0),
+                                              child:
+                                                  CircularProgressIndicator(),
                                             ),
-                                            child: SvgPicture.network(
-                                              pokemon.sprites.other.dreamWorld
-                                                  .frontDefault,
-                                              placeholderBuilder:
-                                                  (BuildContext context) =>
-                                                      const Padding(
-                                                padding: EdgeInsets.all(30.0),
-                                                child:
-                                                    CircularProgressIndicator(),
-                                              ),
-                                            ),
-                                          );
-                                        }),
-                                  ),
+                                          ),
+                                        );
+                                      }),
                                 ),
-                                // Image.network(
-                                //   pokemon.sprites.other.officialArtwork.frontDefault,
-                                // ),
-                                Text(
-                                  '#${pokemon.id}',
-                                  style: const TextStyle(fontSize: 20),
-                                ),
-                                Text(
-                                  pokemon.name.split('').first.toUpperCase() +
-                                      pokemon.name.substring(1),
-                                  style: const TextStyle(fontSize: 20),
-                                ),
-                              ],
-                            ),
+                              ),
+                              Text(
+                                '#$pokemonId',
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                              Text(
+                                pokemon.name.split('').first.toUpperCase() +
+                                    pokemon.name.substring(1),
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ],
                           ),
                         ),
                       );

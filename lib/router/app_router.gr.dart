@@ -21,7 +21,7 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: PokemonDetailsPage(
           key: args.key,
-          pokemon: args.pokemon,
+          id: args.id,
         ),
       );
     },
@@ -39,13 +39,13 @@ abstract class _$AppRouter extends RootStackRouter {
 class PokemonDetailsRoute extends PageRouteInfo<PokemonDetailsRouteArgs> {
   PokemonDetailsRoute({
     Key? key,
-    required PokemonDetails pokemon,
+    required String id,
     List<PageRouteInfo>? children,
   }) : super(
           PokemonDetailsRoute.name,
           args: PokemonDetailsRouteArgs(
             key: key,
-            pokemon: pokemon,
+            id: id,
           ),
           initialChildren: children,
         );
@@ -59,16 +59,16 @@ class PokemonDetailsRoute extends PageRouteInfo<PokemonDetailsRouteArgs> {
 class PokemonDetailsRouteArgs {
   const PokemonDetailsRouteArgs({
     this.key,
-    required this.pokemon,
+    required this.id,
   });
 
   final Key? key;
 
-  final PokemonDetails pokemon;
+  final String id;
 
   @override
   String toString() {
-    return 'PokemonDetailsRouteArgs{key: $key, pokemon: $pokemon}';
+    return 'PokemonDetailsRouteArgs{key: $key, id: $id}';
   }
 }
 

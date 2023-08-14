@@ -10,7 +10,7 @@ class MainResult with _$MainResult {
     required int count,
     required String? next,
     required String? previous,
-    required List<Pokemon> results,
+    @JsonKey(name: 'results') required List<Pokemon> pokemons,
   }) = _MainResult;
 
   factory MainResult.fromJson(Map<String, dynamic> json) =>

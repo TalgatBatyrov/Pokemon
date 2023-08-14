@@ -23,7 +23,8 @@ mixin _$MainResult {
   int get count => throw _privateConstructorUsedError;
   String? get next => throw _privateConstructorUsedError;
   String? get previous => throw _privateConstructorUsedError;
-  List<Pokemon> get results => throw _privateConstructorUsedError;
+  @JsonKey(name: 'results')
+  List<Pokemon> get pokemons => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,11 @@ abstract class $MainResultCopyWith<$Res> {
           MainResult value, $Res Function(MainResult) then) =
       _$MainResultCopyWithImpl<$Res, MainResult>;
   @useResult
-  $Res call({int count, String? next, String? previous, List<Pokemon> results});
+  $Res call(
+      {int count,
+      String? next,
+      String? previous,
+      @JsonKey(name: 'results') List<Pokemon> pokemons});
 }
 
 /// @nodoc
@@ -56,7 +61,7 @@ class _$MainResultCopyWithImpl<$Res, $Val extends MainResult>
     Object? count = null,
     Object? next = freezed,
     Object? previous = freezed,
-    Object? results = null,
+    Object? pokemons = null,
   }) {
     return _then(_value.copyWith(
       count: null == count
@@ -71,9 +76,9 @@ class _$MainResultCopyWithImpl<$Res, $Val extends MainResult>
           ? _value.previous
           : previous // ignore: cast_nullable_to_non_nullable
               as String?,
-      results: null == results
-          ? _value.results
-          : results // ignore: cast_nullable_to_non_nullable
+      pokemons: null == pokemons
+          ? _value.pokemons
+          : pokemons // ignore: cast_nullable_to_non_nullable
               as List<Pokemon>,
     ) as $Val);
   }
@@ -87,7 +92,11 @@ abstract class _$$_MainResultCopyWith<$Res>
       __$$_MainResultCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int count, String? next, String? previous, List<Pokemon> results});
+  $Res call(
+      {int count,
+      String? next,
+      String? previous,
+      @JsonKey(name: 'results') List<Pokemon> pokemons});
 }
 
 /// @nodoc
@@ -104,7 +113,7 @@ class __$$_MainResultCopyWithImpl<$Res>
     Object? count = null,
     Object? next = freezed,
     Object? previous = freezed,
-    Object? results = null,
+    Object? pokemons = null,
   }) {
     return _then(_$_MainResult(
       count: null == count
@@ -119,9 +128,9 @@ class __$$_MainResultCopyWithImpl<$Res>
           ? _value.previous
           : previous // ignore: cast_nullable_to_non_nullable
               as String?,
-      results: null == results
-          ? _value._results
-          : results // ignore: cast_nullable_to_non_nullable
+      pokemons: null == pokemons
+          ? _value._pokemons
+          : pokemons // ignore: cast_nullable_to_non_nullable
               as List<Pokemon>,
     ));
   }
@@ -134,8 +143,8 @@ class _$_MainResult implements _MainResult {
       {required this.count,
       required this.next,
       required this.previous,
-      required final List<Pokemon> results})
-      : _results = results;
+      @JsonKey(name: 'results') required final List<Pokemon> pokemons})
+      : _pokemons = pokemons;
 
   factory _$_MainResult.fromJson(Map<String, dynamic> json) =>
       _$$_MainResultFromJson(json);
@@ -146,17 +155,18 @@ class _$_MainResult implements _MainResult {
   final String? next;
   @override
   final String? previous;
-  final List<Pokemon> _results;
+  final List<Pokemon> _pokemons;
   @override
-  List<Pokemon> get results {
-    if (_results is EqualUnmodifiableListView) return _results;
+  @JsonKey(name: 'results')
+  List<Pokemon> get pokemons {
+    if (_pokemons is EqualUnmodifiableListView) return _pokemons;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_results);
+    return EqualUnmodifiableListView(_pokemons);
   }
 
   @override
   String toString() {
-    return 'MainResult(count: $count, next: $next, previous: $previous, results: $results)';
+    return 'MainResult(count: $count, next: $next, previous: $previous, pokemons: $pokemons)';
   }
 
   @override
@@ -168,13 +178,13 @@ class _$_MainResult implements _MainResult {
             (identical(other.next, next) || other.next == next) &&
             (identical(other.previous, previous) ||
                 other.previous == previous) &&
-            const DeepCollectionEquality().equals(other._results, _results));
+            const DeepCollectionEquality().equals(other._pokemons, _pokemons));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, count, next, previous,
-      const DeepCollectionEquality().hash(_results));
+      const DeepCollectionEquality().hash(_pokemons));
 
   @JsonKey(ignore: true)
   @override
@@ -192,10 +202,11 @@ class _$_MainResult implements _MainResult {
 
 abstract class _MainResult implements MainResult {
   const factory _MainResult(
-      {required final int count,
-      required final String? next,
-      required final String? previous,
-      required final List<Pokemon> results}) = _$_MainResult;
+          {required final int count,
+          required final String? next,
+          required final String? previous,
+          @JsonKey(name: 'results') required final List<Pokemon> pokemons}) =
+      _$_MainResult;
 
   factory _MainResult.fromJson(Map<String, dynamic> json) =
       _$_MainResult.fromJson;
@@ -207,7 +218,8 @@ abstract class _MainResult implements MainResult {
   @override
   String? get previous;
   @override
-  List<Pokemon> get results;
+  @JsonKey(name: 'results')
+  List<Pokemon> get pokemons;
   @override
   @JsonKey(ignore: true)
   _$$_MainResultCopyWith<_$_MainResult> get copyWith =>
