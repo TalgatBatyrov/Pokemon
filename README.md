@@ -28,7 +28,11 @@ This is a Flutter application created using the BLoC architecture and utilizing 
 2. Install dependencies:
  
        flutter pub get
+   
+3. Serialization and Generation
 
-3. Run the application:
+       flutter pub run build_runner build
+
+4. Run the application:
 
        flutter run
