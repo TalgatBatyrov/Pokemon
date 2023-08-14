@@ -1,10 +1,12 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:pokemon/app_widgets/app_error.dart';
+import 'package:pokemon/app_widgets/app_loading.dart';
 import 'package:pokemon/extensions/app_extensions.dart';
 import '../blocs/pokemon_details/pokemon_details_cubit.dart';
+import '../widgets/details_image.dart';
+import '../widgets/property_list.dart';
 
 @RoutePage()
 class PokemonDetailsPage extends StatefulWidget {
@@ -43,9 +45,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const SizedBox(
-                          height: 70.0,
-                        ),
+                        const SizedBox(height: 70.0),
                         Text(
                           pokemon.name.capitalize(),
                           style: const TextStyle(
@@ -76,68 +76,24 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                             ),
                           ],
                         ),
-                        const Text(
-                          "Types",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        PropertyList(
+                          names: pokemon.types.map((e) => e.type.name).toList(),
+                          title: "Types",
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: pokemon.types
-                              .map(
-                                (t) => Card(
-                                  color: Colors.red,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(t.type.name,
-                                        style: const TextStyle(
-                                            color: Colors.white)),
-                                  ),
-                                ),
-                              )
+                        PropertyList(
+                          names: pokemon.abilities
+                              .map((e) => e.ability.name)
                               .toList(),
-                        ),
-                        const Text("Abilities",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: pokemon.abilities
-                              .map((t) => Card(
-                                    color: Colors.green,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        t.ability.name,
-                                        style: const TextStyle(
-                                            color: Colors.white),
-                                      ),
-                                    ),
-                                  ))
-                              .toList(),
+                          title: "Abilities",
                         ),
                       ],
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: SizedBox(
-                    height: 200.0,
-                    width: 200.0,
-                    child: SvgPicture.network(
-                      pokemon.sprites.other.dreamWorld.frontDefault,
-                      placeholderBuilder: (BuildContext context) =>
-                          const Padding(
-                        padding: EdgeInsets.all(30.0),
-                        child: CircularProgressIndicator(),
-                      ),
-                    ),
-                  ),
-                )
+                DetailImage(url: pokemon.sprites.other.dreamWorld.frontDefault)
               ],
             ),
-            loading: () => const Center(
-              child: CircularProgressIndicator(),
-            ),
+            loading: () => const AppLoading(),
             error: (message) => AppError(message: message),
           );
         },

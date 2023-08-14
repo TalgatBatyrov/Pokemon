@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pokemon/features/pokemons/blocs/pokemons/pokemon_cubit.dart';
 import 'package:pokemon/repositories/pokemon_repository.dart';
 import 'package:pokemon/router/app_router.dart';
 
@@ -26,10 +25,10 @@ class _AppState extends State<App> {
       create: (context) => PokemonRepository(_dio),
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (context) =>
-                PokemonCubit(context.read<PokemonRepository>()),
-          ),
+          // BlocProvider(
+          //   create: (context) =>
+          //       PokemonCubit(context.read<PokemonRepository>()),
+          // ),
           BlocProvider(
             create: (context) => PokemonDetailsCubit(
               context.read<PokemonRepository>(),

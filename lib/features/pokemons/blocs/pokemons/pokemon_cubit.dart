@@ -10,15 +10,15 @@ part 'pokemon_state.dart';
 class PokemonCubit extends Cubit<PokemonState> {
   final IPokemonRepository _pokemonRepository;
   PokemonCubit(this._pokemonRepository) : super(const PokemonState.loading()) {
-    getPokemons('https://pokeapi.co/api/v2/pokemon');
+    // getPokemons('https://pokeapi.co/api/v2/pokemon');
   }
 
   Future<void> getPokemons(String url) async {
     try {
       emit(const PokemonState.loading());
-      final pokemons = await _pokemonRepository.getAllPokemons1(url);
+      final mainResult = await _pokemonRepository.getAllPokemons1(url);
 
-      emit(PokemonState.loaded(response: pokemons));
+      emit(PokemonState.loaded(response: mainResult));
     } catch (e) {
       emit(PokemonState.error(e.toString()));
     }

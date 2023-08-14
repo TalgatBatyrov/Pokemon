@@ -51,7 +51,10 @@ class _PokemonsCardListState extends State<PokemonsCardList>
         itemBuilder: (context, index) {
           final pokemon = widget.pokemons[index];
 
-          return PokemonCard(animation: _animation, pokemon: pokemon);
+          return PokemonCard(
+            pokemon: pokemon,
+            animation: _animation,
+          );
         },
       ),
     );
