@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../features/pokemons/pages/pokemon_details_page.dart';
 import '../features/pokemons/pages/pokemons_list_page.dart';
-import '../repositories/pokemon/models/pokemon_details/pokemon_details.dart';
 
 part 'app_router.gr.dart';
 

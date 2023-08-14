@@ -13,3 +13,8 @@ class Pokemon with _$Pokemon {
   factory Pokemon.fromJson(Map<String, dynamic> json) =>
       _$PokemonFromJson(json);
 }
+
+extension ModelExtension on Pokemon {
+  String get umageUrl =>
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${this.url.split('/')[6]}.svg';
+}

@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pokemon/repositories/pokemon/models/pokemon_sprites/elements/other/other.dart';
+
+import 'elements/other/other.dart';
 
 part 'pokemon_sprites.freezed.dart';
 part 'pokemon_sprites.g.dart';

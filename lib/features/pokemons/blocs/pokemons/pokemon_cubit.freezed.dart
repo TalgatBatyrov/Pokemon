@@ -243,7 +243,6 @@ class __$$_LoadedCopyWithImpl<$Res>
 class _$_Loaded implements _Loaded {
   const _$_Loaded({required this.response});
 
-// required List<PokemonDetails> pokemons,
   @override
   final MainResult response;
 
@@ -348,7 +347,6 @@ class _$_Loaded implements _Loaded {
 abstract class _Loaded implements PokemonState {
   const factory _Loaded({required final MainResult response}) = _$_Loaded;
 
-// required List<PokemonDetails> pokemons,
   MainResult get response;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>

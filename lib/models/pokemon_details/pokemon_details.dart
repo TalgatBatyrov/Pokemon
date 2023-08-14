@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pokemon/repositories/pokemon/models/species/species.dart';
 
 import '../ability_item/ability_item.dart';
 import '../pokemon_sprites/pokemon_sprites.dart';
 import '../pokemon_types/pokemon_type.dart';
+import '../species/species.dart';
 
 part 'pokemon_details.freezed.dart';
 part 'pokemon_details.g.dart';

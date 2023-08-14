@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pokemon/repositories/pokemon/i_pokemon_repository.dart';
-import 'package:pokemon/repositories/pokemon/models/main_result/main_result.dart';
+import 'package:pokemon/repositories/i_pokemon_repository.dart';
+
+import '../../../../models/main_result/main_result.dart';
 
 part 'pokemon_cubit.freezed.dart';
 part 'pokemon_state.dart';

@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:pokemon/repositories/pokemon/i_pokemon_repository.dart';
-import 'package:pokemon/repositories/pokemon/models/main_result/main_result.dart';
-import 'package:pokemon/repositories/pokemon/models/pokemon/pokemon.dart';
-import 'package:pokemon/repositories/pokemon/models/pokemon_details/pokemon_details.dart';
+import 'package:pokemon/repositories/i_pokemon_repository.dart';
+
+import '../models/main_result/main_result.dart';
+import '../models/pokemon/pokemon.dart';
+import '../models/pokemon_details/pokemon_details.dart';
 
 class PokemonRepository implements IPokemonRepository {
   final Dio _dio;
@@ -26,7 +27,8 @@ class PokemonRepository implements IPokemonRepository {
 
   @override
   Future<PokemonDetails> getPokemon(String id) async {
-    final response = await _dio.get('https://pokeapi.co/api/v2/pokemon/$id');
+    final url = 'https://pokeapi.co/api/v2/pokemon/$id';
+    final response = await _dio.get(url);
     final pokemon = PokemonDetails.fromJson(response.data);
     return pokemon;
   }
