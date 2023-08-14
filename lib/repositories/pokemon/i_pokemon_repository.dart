@@ -1,8 +1,10 @@
+import 'package:pokemon/repositories/pokemon/models/main_result/main_result.dart';
 import 'package:pokemon/repositories/pokemon/models/pokemon/pokemon.dart';
 import 'package:pokemon/repositories/pokemon/models/pokemon_details/pokemon_details.dart';
 
 abstract class IPokemonRepository {
-  Future<List<Pokemon>> getAllPokemons();
+  Future<MainResult> getAllPokemons1(String url);
+  Future<List<Pokemon>> getAllPokemons(String url);
 
   Future<PokemonDetails> getPokemon(String name);
 

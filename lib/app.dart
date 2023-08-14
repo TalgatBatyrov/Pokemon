@@ -14,14 +14,14 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   final _appRouter = AppRouter();
+  final _dio = Dio();
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => PokemonRepository(Dio()),
+      create: (context) => PokemonRepository(_dio),
       child: BlocProvider(
-        create: (context) =>
-            PokemonCubit(context.read<PokemonRepository>())..getPokemons(),
+        create: (context) => PokemonCubit(context.read<PokemonRepository>()),
         child: MaterialApp.router(
           title: 'Flutter Demo',
           theme: ThemeData(

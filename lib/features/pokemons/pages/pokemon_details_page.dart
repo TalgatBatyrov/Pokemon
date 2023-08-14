@@ -46,11 +46,34 @@ class PokemonDetailsPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: pokemon.types
+                        .map(
+                          (t) => FilterChip(
+                              backgroundColor: Colors.amber,
+                              label: Text(t.type.name,
+                                  style: const TextStyle(color: Colors.white)),
+                              onSelected: (b) {}),
+                        )
+                        .toList(),
+                  ),
+
+                  pokemon.species.name == pokemon.name
+                      ? Text(pokemon.species.name)
+                      : const Text("This is not the final form"),
+
+                  const Text("Abilities",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: pokemon.abilities
                         .map((t) => FilterChip(
-                            backgroundColor: Colors.amber,
-                            label: Text(t.type.name,
-                                style: const TextStyle(color: Colors.white)),
-                            onSelected: (b) {}))
+                            backgroundColor: Colors.red,
+                            label: Text(
+                              t.ability.name,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                            onSelected: (b) {
+                              print(b);
+                            }))
                         .toList(),
                   ),
                   // Text("Weakness",

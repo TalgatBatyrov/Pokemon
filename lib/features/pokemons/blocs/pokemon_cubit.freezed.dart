@@ -19,7 +19,9 @@ mixin _$PokemonState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<PokemonDetails> pokemons) loaded,
+    required TResult Function(List<PokemonDetails> pokemons, int count,
+            String? next, String? previous)
+        loaded,
     required TResult Function(String message) error,
     required TResult Function() empty,
   }) =>
@@ -27,7 +29,9 @@ mixin _$PokemonState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<PokemonDetails> pokemons)? loaded,
+    TResult? Function(List<PokemonDetails> pokemons, int count, String? next,
+            String? previous)?
+        loaded,
     TResult? Function(String message)? error,
     TResult? Function()? empty,
   }) =>
@@ -35,7 +39,9 @@ mixin _$PokemonState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<PokemonDetails> pokemons)? loaded,
+    TResult Function(List<PokemonDetails> pokemons, int count, String? next,
+            String? previous)?
+        loaded,
     TResult Function(String message)? error,
     TResult Function()? empty,
     required TResult orElse(),
@@ -124,7 +130,9 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<PokemonDetails> pokemons) loaded,
+    required TResult Function(List<PokemonDetails> pokemons, int count,
+            String? next, String? previous)
+        loaded,
     required TResult Function(String message) error,
     required TResult Function() empty,
   }) {
@@ -135,7 +143,9 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<PokemonDetails> pokemons)? loaded,
+    TResult? Function(List<PokemonDetails> pokemons, int count, String? next,
+            String? previous)?
+        loaded,
     TResult? Function(String message)? error,
     TResult? Function()? empty,
   }) {
@@ -146,7 +156,9 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<PokemonDetails> pokemons)? loaded,
+    TResult Function(List<PokemonDetails> pokemons, int count, String? next,
+            String? previous)?
+        loaded,
     TResult Function(String message)? error,
     TResult Function()? empty,
     required TResult orElse(),
@@ -204,7 +216,11 @@ abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<PokemonDetails> pokemons});
+  $Res call(
+      {List<PokemonDetails> pokemons,
+      int count,
+      String? next,
+      String? previous});
 }
 
 /// @nodoc
@@ -218,12 +234,27 @@ class __$$_LoadedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? pokemons = null,
+    Object? count = null,
+    Object? next = freezed,
+    Object? previous = freezed,
   }) {
     return _then(_$_Loaded(
       pokemons: null == pokemons
           ? _value._pokemons
           : pokemons // ignore: cast_nullable_to_non_nullable
               as List<PokemonDetails>,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      next: freezed == next
+          ? _value.next
+          : next // ignore: cast_nullable_to_non_nullable
+              as String?,
+      previous: freezed == previous
+          ? _value.previous
+          : previous // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -231,7 +262,11 @@ class __$$_LoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded({required final List<PokemonDetails> pokemons})
+  const _$_Loaded(
+      {required final List<PokemonDetails> pokemons,
+      required this.count,
+      required this.next,
+      required this.previous})
       : _pokemons = pokemons;
 
   final List<PokemonDetails> _pokemons;
@@ -243,8 +278,15 @@ class _$_Loaded implements _Loaded {
   }
 
   @override
+  final int count;
+  @override
+  final String? next;
+  @override
+  final String? previous;
+
+  @override
   String toString() {
-    return 'PokemonState.loaded(pokemons: $pokemons)';
+    return 'PokemonState.loaded(pokemons: $pokemons, count: $count, next: $next, previous: $previous)';
   }
 
   @override
@@ -252,12 +294,16 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
-            const DeepCollectionEquality().equals(other._pokemons, _pokemons));
+            const DeepCollectionEquality().equals(other._pokemons, _pokemons) &&
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.next, next) || other.next == next) &&
+            (identical(other.previous, previous) ||
+                other.previous == previous));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_pokemons));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_pokemons), count, next, previous);
 
   @JsonKey(ignore: true)
   @override
@@ -269,35 +315,41 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<PokemonDetails> pokemons) loaded,
+    required TResult Function(List<PokemonDetails> pokemons, int count,
+            String? next, String? previous)
+        loaded,
     required TResult Function(String message) error,
     required TResult Function() empty,
   }) {
-    return loaded(pokemons);
+    return loaded(pokemons, count, next, previous);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<PokemonDetails> pokemons)? loaded,
+    TResult? Function(List<PokemonDetails> pokemons, int count, String? next,
+            String? previous)?
+        loaded,
     TResult? Function(String message)? error,
     TResult? Function()? empty,
   }) {
-    return loaded?.call(pokemons);
+    return loaded?.call(pokemons, count, next, previous);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<PokemonDetails> pokemons)? loaded,
+    TResult Function(List<PokemonDetails> pokemons, int count, String? next,
+            String? previous)?
+        loaded,
     TResult Function(String message)? error,
     TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(pokemons);
+      return loaded(pokemons, count, next, previous);
     }
     return orElse();
   }
@@ -341,10 +393,16 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements PokemonState {
-  const factory _Loaded({required final List<PokemonDetails> pokemons}) =
-      _$_Loaded;
+  const factory _Loaded(
+      {required final List<PokemonDetails> pokemons,
+      required final int count,
+      required final String? next,
+      required final String? previous}) = _$_Loaded;
 
   List<PokemonDetails> get pokemons;
+  int get count;
+  String? get next;
+  String? get previous;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -413,7 +471,9 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<PokemonDetails> pokemons) loaded,
+    required TResult Function(List<PokemonDetails> pokemons, int count,
+            String? next, String? previous)
+        loaded,
     required TResult Function(String message) error,
     required TResult Function() empty,
   }) {
@@ -424,7 +484,9 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<PokemonDetails> pokemons)? loaded,
+    TResult? Function(List<PokemonDetails> pokemons, int count, String? next,
+            String? previous)?
+        loaded,
     TResult? Function(String message)? error,
     TResult? Function()? empty,
   }) {
@@ -435,7 +497,9 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<PokemonDetails> pokemons)? loaded,
+    TResult Function(List<PokemonDetails> pokemons, int count, String? next,
+            String? previous)?
+        loaded,
     TResult Function(String message)? error,
     TResult Function()? empty,
     required TResult orElse(),
@@ -530,7 +594,9 @@ class _$_Empty implements _Empty {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<PokemonDetails> pokemons) loaded,
+    required TResult Function(List<PokemonDetails> pokemons, int count,
+            String? next, String? previous)
+        loaded,
     required TResult Function(String message) error,
     required TResult Function() empty,
   }) {
@@ -541,7 +607,9 @@ class _$_Empty implements _Empty {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<PokemonDetails> pokemons)? loaded,
+    TResult? Function(List<PokemonDetails> pokemons, int count, String? next,
+            String? previous)?
+        loaded,
     TResult? Function(String message)? error,
     TResult? Function()? empty,
   }) {
@@ -552,7 +620,9 @@ class _$_Empty implements _Empty {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<PokemonDetails> pokemons)? loaded,
+    TResult Function(List<PokemonDetails> pokemons, int count, String? next,
+            String? previous)?
+        loaded,
     TResult Function(String message)? error,
     TResult Function()? empty,
     required TResult orElse(),
